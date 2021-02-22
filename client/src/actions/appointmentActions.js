@@ -11,11 +11,11 @@ import {
 	UPDATE_APPOINTMENT_PRESCRIPTION,
 	UPDATE_APPOINTMENT,
 	GET_APPOINTMENTS_BY_DATE,
-	CREATE_REPORT
+	CREATE_REPORT,
+	REGISTER_SUCCESS
 } from './types';
 import { setAlert } from './alertActions';
 import { tokenConfig } from './authActions';
-import { da } from 'date-fns/locale';
 
 
 export const updateAppointment = (appointmentObj) => (dispatch, getState) => {
@@ -58,7 +58,7 @@ export const getDoctorAppointments = (id) => (dispatch, getState) => {
 };
 
 export const createAppointment = appointmentObj => (dispatch , getState) => {
-  console.log(appointmentObj);
+  
   axios.post('api/appointments/createAppointment', appointmentObj, tokenConfig(getState))
   .then(res => 
     {
@@ -67,8 +67,20 @@ export const createAppointment = appointmentObj => (dispatch , getState) => {
       payload: res.data
   })
   dispatch(setAlert('Appointment created Successfully', 'success'));
-})
+  })
   .catch(err =>  dispatch(setAlert(`${err}`, 'danger')));
+
+	axios.post('api/doctors/addTakenAppointment', appointmentObj, tokenConfig(getState))
+	.then(res => 
+		{
+		dispatch({
+		type: CREATE_APPOINTMENT,
+		payload: res.data
+	})
+	dispatch(setAlert('Appointment created Successfully', 'success'));
+	})
+  .catch(err =>  dispatch(setAlert(`${err}`, 'danger')));
+
 };
 
 

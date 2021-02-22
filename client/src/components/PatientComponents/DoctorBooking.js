@@ -7,6 +7,7 @@ import 'rc-time-picker/assets/index.css';
 import 'react-infinite-calendar/styles.css';
 import like from '../../assets/images/like.png';
 import Navbar from './../GeneralComponents/AppNavbar'
+import { object } from 'prop-types';
 
 class DoctorBooking extends Component {
   constructor(props) {
@@ -45,11 +46,38 @@ class DoctorBooking extends Component {
       });
     }
   };
+   generateOptions( excludedOptions=[15]) {
+    const arr = [];
+    for (let value = 0; value < 60; value=value+15) {
+      if (excludedOptions.indexOf(value) < 0) {
+        arr.push(value);
+      }
+    }
+    return arr;
+  }
+
+   
 
   render() {
     const { today } = this.state;
     const { location } = this.props;
     const { doctor } = location.state;
+    console.log(this.generateOptions()) 
+    var date=moment(this.state.selectedDate).format('ll');
+    function disabledMinutes(h) {
+      doctor.takenAppointments.forEach(object => {
+        if(object.date===date)
+       {
+         var index=object.time.indexOf(":")
+         console.log(typeof(index));
+       //  var zib = (object.time).replaceAt(index,'')
+        
+      }
+        
+      });
+  
+    
+    }
     return (
       <div className="DoctorBooking">
         <Navbar
@@ -69,7 +97,7 @@ class DoctorBooking extends Component {
               onChange={this.handleTimeChange}
               format="h:mm a"
               minuteStep={15}
-              use12Hours
+              disabledMinutes={disabledMinutes}
               inputReadOnly
               
             />
@@ -117,5 +145,6 @@ class DoctorBooking extends Component {
     );
   }
 }
+
 
 export default DoctorBooking;

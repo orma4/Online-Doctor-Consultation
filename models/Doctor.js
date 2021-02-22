@@ -52,7 +52,11 @@ const doctorSchema = new Schema ({
    date: {
       type: Date,
       default: Date.now
-  }
+  },
+  takenAppointments: {
+   type: Array,
+   required: true
+}
 
 });
 

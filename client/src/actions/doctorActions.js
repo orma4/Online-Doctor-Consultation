@@ -36,12 +36,6 @@
 // };
 
 
-
-
-
-
-
-
 import axios from 'axios';
 import {
 ADD_DOCTOR,

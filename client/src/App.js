@@ -34,6 +34,10 @@ import Dashboard  from './components/DoctorComponent/Dashboard/Dashboard';
 import DoctorAppointmentHistory  from './components/DoctorComponent/DoctorAppointment/DoctorAppointmentHistory';
 import DoctorAppointment  from './components/DoctorComponent/DoctorAppointment/DoctorAppointment';
 import Patients  from './components/DoctorComponent/Patients/Patients';
+import ResetPasswordScreen from './components/GeneralComponents/Auth/ResetPasswordScreen';
+import LoginForgot from './components/GeneralComponents/Auth/LoginForgot';
+
+
 
 const AdminDashboard = React.lazy(() => import('./components/AdminComponents/AdminDashboard'));
 
@@ -63,6 +67,8 @@ class App extends Component {
           <DoctorPrivateRoute  exact path="/doctorPatients" component={Patients} />
           <DoctorPrivateRoute  exact path="/doctorAppointmentsHistory" component={DoctorAppointmentHistory} />
           <Route               exact path="/admin" component={AdminDashboard} />
+          <Route               exact path="/forgot" component={LoginForgot} />
+          <Route               exact path="/passwordreset/:resetToken" component={ResetPasswordScreen} />
           <CombinedRoute             path="/:url" component={Video} /> 
        </Switch>
        </BrowserRouter>

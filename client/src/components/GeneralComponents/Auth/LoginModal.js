@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../../actions/authActions';
 import { clearErrors } from '../../../actions/errorActions';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 
 
 class LoginModal extends Component {
@@ -123,13 +123,14 @@ class LoginModal extends Component {
                                   className="mb-3"
                                   onChange={this.onChange}/>
 
+                                <Link to="/forgot">Forgot Password</Link>
+
                                   <Button
                                   color="dark"
                                   style = {{marginTop: '2rem'}}
                                   block
-                        
                                   >
-                                      Login</Button>
+                                  Login</Button>
                                
                               </FormGroup>
                               </Form>  

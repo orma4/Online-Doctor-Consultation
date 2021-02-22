@@ -49,6 +49,8 @@ class DoctorDetail extends Component  {
   
 render(){
   const singleDoctor = this.state.doctor;
+  console.log(singleDoctor.image);
+
   return (
     <div className="DoctorDetail">
       <AppNavbar bg="#266a61" title="Details" backBtn="/doctors" />

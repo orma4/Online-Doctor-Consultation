@@ -16,6 +16,29 @@ router.get('/'  , auth, (req,res) => {
     
     
 
+// @route           POST api/doctors
+// @description:    add taken  appointment
+// @access           private
+
+// takenAppointments:
+router.post('/addTakenAppointment', auth, async (req,res) => {
+    console.log(req.body)
+    var takenAppointments=[];
+    
+   var doctor=await Doctor.findById(req.body.doctor._id);
+        
+            takenAppointments = doctor.takenAppointments;
+            console.log(takenAppointments   )
+            takenAppointments.push({date:req.body.date,
+            time:req.body.time})
+            console.log(takenAppointments)
+            Doctor.findOneAndUpdate({_id : req.body.doctor._id}, {takenAppointments:takenAppointments   },
+                { new: true }).then(res.json(takenAppointments))
+ });
+
+
+
+
 // @route           GET api/doctors
 // @description:    get single doctor
 //@access           public

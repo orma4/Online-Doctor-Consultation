@@ -62,7 +62,8 @@ class DoctorBooking extends Component {
     const { today } = this.state;
     const { location } = this.props;
     const { doctor } = location.state;
-    console.log(this.generateOptions()) 
+    //console.log(this.generateOptions()) 
+
     var date=moment(this.state.selectedDate).format('ll');
     function disabledMinutes(h) {
       doctor.takenAppointments.forEach(object => {

@@ -51,6 +51,9 @@ const userSchema = new Schema ({
      resetPasswordExpire: Date,
 });
 userSchema.methods.getSignedJwtToken = function () {
+   console.log("secret:", process.env.jwtSecret)
+   console.log("expire:", process.env.JWT_EXPIRE)
+
    return jwt.sign({ id: this._id }, process.env.jwtSecret, {
      expiresIn: process.env.JWT_EXPIRE,
    });

@@ -43,7 +43,7 @@ const sendEmail = (options) => {
     html: options.text,
   };
 
- var obj = transporter.sendMail(mailOptions, function (err, info) {
+ transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
       console.log(err);
       res.status(400).json({ msg: err });
@@ -52,7 +52,7 @@ const sendEmail = (options) => {
     }
   });
 
-  return obj = {
+  return  {
     successman: true, data: "Email Sent", opt: options,
     emailfrom: process.env.EMAIL_FROM,
     emailservice: process.env.EMAIL_SERVICE,
@@ -102,7 +102,7 @@ router.post("/forgotpassword",async (req, res, next) => {
          subject: "Password Reset Request",
          text: message,
        });
-        //console.log("obj", obj)
+        console.log("obj", obj)
         res.status(200).json({ successasdasd: true, data: "Email Sent", obj: obj });
 
      } catch (err) {

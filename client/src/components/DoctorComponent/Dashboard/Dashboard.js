@@ -63,8 +63,8 @@ const Dashboard = ({appointments, getDoctorPatients, getDoctorAppointments, user
    
     const dateComapre = (date) => { 
         var today = todayConvert();
-       console.log(date)
-
+       console.log('date',date)
+        console.log('today',today)
         if (Date.parse(today) <= Date.parse(date) )
             return true;
         else
@@ -84,7 +84,8 @@ const Dashboard = ({appointments, getDoctorPatients, getDoctorAppointments, user
                         <div className="card-body d-flex flex-items">
                             <div className="col-sm-4">
                                 <h1>
-                                {appointments.filter(appointment=>(appointment.status==="pending")).length}
+                                {appointments.filter(appointment=>(appointment.status==="pending"
+                            )).length}
                                 </h1>
                             </div>
                             <div className="col-sm-8">

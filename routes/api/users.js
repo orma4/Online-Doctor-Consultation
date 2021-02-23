@@ -97,7 +97,7 @@ router.post("/forgotpassword",async (req, res, next) => {
          text: message,
        });
  
-       res.status(200).json({ success: true, data: "Email Sent" });
+      //  res.status(200).json({ success: true, data: "Email Sent" });
      } catch (err) {
        console.log(err);
  

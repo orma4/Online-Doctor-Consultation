@@ -126,7 +126,7 @@ const submit = () => {
                  <select onChange={(e)=>statusHandler(e,appointment._id)} className="form-control-sm text-light select" name="status">
                  <option selected disabled hidden>{appointment.status}</option>
                  <option value="approved">Approved</option>
-                 <option value="cancelled">Cancelled</option>
+                 <option value="pending">Pending</option>
                  </select>
                 }
                 <button data-toggle="modal" onClick={toggle} className="btn btn-warning text-light"> 

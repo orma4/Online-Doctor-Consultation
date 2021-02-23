@@ -25,7 +25,7 @@ const sendEmail = (options) => {
 //   };
 //   var transporter = nodemailer.createTransport(smtpConfig);
   const transporter = nodemailer.createTransport({
-    port: process.env.PORT,
+    port: 587,
     service: process.env.EMAIL_SERVICE,
     auth: {
       user: process.env.EMAIL_USERNAME,

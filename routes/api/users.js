@@ -32,6 +32,8 @@ const sendEmail = (options) => {
     },
   });
 
+  console.log(options.to)
+
   const mailOptions = {
     from: process.env.EMAIL_FROM,
     to: options.to,
@@ -57,7 +59,7 @@ module.exports = sendEmail;
 router.post("/forgotpassword",async (req, res, next) => {
    // Send Email to email provided but first check if user exists
    const { email } = req.body;
- 
+    console.log(email)
    try {
      const user = await User.findOne({ email });
  

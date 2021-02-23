@@ -23,7 +23,6 @@ import {withRouter , Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const LoginForgot = ({forgot}) => {
-    console.log('main')
     const [email, setEmail] = useState("");
     const [emailSent, setEmailSent] = useState(false);
 

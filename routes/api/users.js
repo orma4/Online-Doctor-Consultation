@@ -25,6 +25,7 @@ const sendEmail = (options) => {
 //   };
 //   var transporter = nodemailer.createTransport(smtpConfig);
   const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
     port: 587,
     service: process.env.EMAIL_SERVICE,
     auth: {

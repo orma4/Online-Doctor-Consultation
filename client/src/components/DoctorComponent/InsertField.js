@@ -57,12 +57,18 @@ switch(accessor){
     
   case 'join':   
     var url = row['_id'];
-    return(
-      <Link to={{pathname:`/${url}`,state:row}} variant="contained" color="primary" 
-      style={{ margin: "20px" }}>
-        Open Meeting
-        </Link>
-      )
+    if (row['status'] ==="approved"){
+      return(
+        <Link to={{pathname:`/${url}`,state:row}} variant="contained" color="primary" 
+        style={{ margin: "20px" }}>
+          Open Meeting
+          </Link>
+        )
+    }
+    else {
+      return (<h3>Appointment is not approved yet!</h3>)
+    }
+   
 
     case 'report':
       return(

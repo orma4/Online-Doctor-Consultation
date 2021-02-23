@@ -32,7 +32,7 @@ const sendEmail = (options) => {
     },
   });
 
-  console.log(options.to)
+  console.log('opt',options.to)
 
   const mailOptions = {
     from: process.env.EMAIL_FROM,
@@ -59,14 +59,15 @@ module.exports = sendEmail;
 router.post("/forgotpassword",async (req, res, next) => {
    // Send Email to email provided but first check if user exists
    const { email } = req.body;
-    console.log(email)
+   console.log('em',email);
+
    try {
      const user = await User.findOne({ email });
  
      if (!user) {
        return next(new ErrorResponse("No email could not be sent", 404));
      }
-     console.log(user)
+     console.log('user',user)
      // Reset Token Gen and add to database hashed (private) version of token
      const resetToken = user.getResetPasswordToken();
  

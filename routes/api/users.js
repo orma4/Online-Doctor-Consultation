@@ -44,8 +44,10 @@ const sendEmail = (options) => {
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
       console.log(err);
+      res.status(400).json({ msg: err });
     } else {
       console.log(info);
+      res.status(200).json({ success: true, data: "Email Sent" });
     }
   });
 };
@@ -60,6 +62,7 @@ router.post("/forgotpassword",async (req, res, next) => {
    // Send Email to email provided but first check if user exists
    const { email } = req.body;
    console.log('em',email);
+   console.log(email);
 
    try {
      const user = await User.findOne({ email });
@@ -74,7 +77,7 @@ router.post("/forgotpassword",async (req, res, next) => {
      await user.save();
  
      // Create reset url to email to provided email
-     const resetUrl = `https://online-experts-consultation.herokuapp.com/passwordreset/${resetToken}`;
+     const resetUrl = `online-experts-consultation.herokuapp.com/passwordreset/${resetToken}`;
  
      // HTML Message
      const message = `

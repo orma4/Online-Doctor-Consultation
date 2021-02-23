@@ -39,6 +39,9 @@ const LoginForgot = ({forgot}) => {
       };
   
       try {
+        console.log("email loginforgot")
+        console.log(email)
+
         const { data } = await axios.post(
           "/api/users/forgotpassword",
           { email },

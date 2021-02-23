@@ -47,7 +47,11 @@ const sendEmail = (options) => {
       res.status(400).json({ msg: err });
     } else {
       console.log(info);
-      res.status(200).json({ successman: true, data: "Email Sent", opt: options });
+      res.status(200).json({ successman: true, data: "Email Sent", opt: options,
+    emailfrom: process.env.EMAIL_FROM,
+    emailservice: process.env.EMAIL_SERVICE,
+    emailusername: process.env.EMAIL_USERNAME,
+    emailpass: process.env.EMAIL_PASSWORD});
     }
   });
 };

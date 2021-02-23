@@ -32,7 +32,7 @@ const sendEmail = (options) => {
     },
   });
 
-  console.log('opt',options.to)
+  //console.log('opt',options.to)
 
   const mailOptions = {
     from: process.env.EMAIL_FROM,
@@ -41,19 +41,23 @@ const sendEmail = (options) => {
     html: options.text,
   };
 
-  transporter.sendMail(mailOptions, function (err, info) {
+ var obj = transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
       console.log(err);
       res.status(400).json({ msg: err });
     } else {
-      console.log(info);
-      res.status(200).json({ successman: true, data: "Email Sent", opt: options,
+      //console.log(info);
+    }
+  });
+
+  return obj = {
+    successman: true, data: "Email Sent", opt: options,
     emailfrom: process.env.EMAIL_FROM,
     emailservice: process.env.EMAIL_SERVICE,
     emailusername: process.env.EMAIL_USERNAME,
-    emailpass: process.env.EMAIL_PASSWORD});
+    emailpass: process.env.EMAIL_PASSWORD
     }
-  });
+
 };
 
 module.exports = sendEmail;
@@ -65,8 +69,8 @@ module.exports = sendEmail;
 router.post("/forgotpassword",async (req, res, next) => {
    // Send Email to email provided but first check if user exists
    const { email } = req.body;
-   console.log('em',email);
-   console.log(email);
+   //console.log('em',email);
+   //console.log(email);
 
    try {
      const user = await User.findOne({ email });
@@ -74,7 +78,7 @@ router.post("/forgotpassword",async (req, res, next) => {
      if (!user) {
        return next(new ErrorResponse("No email could not be sent", 404));
      }
-     console.log('user',user)
+     //console.log('user',user)
      // Reset Token Gen and add to database hashed (private) version of token
      const resetToken = user.getResetPasswordToken();
  
@@ -91,13 +95,14 @@ router.post("/forgotpassword",async (req, res, next) => {
      `;
  
      try {
-       await sendEmail({
+         var obj = await sendEmail({
          to: user.email,
          subject: "Password Reset Request",
          text: message,
        });
- 
-      //  res.status(200).json({ success: true, data: "Email Sent" });
+        //console.log("obj", obj)
+        res.status(200).json({ successasdasd: true, data: "Email Sent", obj: obj });
+
      } catch (err) {
        console.log(err);
  

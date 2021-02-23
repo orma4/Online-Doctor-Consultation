@@ -47,7 +47,7 @@ const sendEmail = (options) => {
       res.status(400).json({ msg: err });
     } else {
       console.log(info);
-      res.status(200).json({ success: true, data: "Email Sent" });
+      res.status(200).json({ successman: true, data: "Email Sent", opt: options });
     }
   });
 };

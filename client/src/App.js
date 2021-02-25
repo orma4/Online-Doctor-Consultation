@@ -69,7 +69,7 @@ class App extends Component {
           <Route               exact path="/admin" component={AdminDashboard} />
           <Route               exact path="/forgot" component={LoginForgot} />
           <Route               exact path="/passwordreset/:resetToken" component={ResetPasswordScreen} />
-          {/* <CombinedRoute             path="/:url" component={Video} />  */}
+          <CombinedRoute             path="/:url" component={Video} /> 
        </Switch>
        </BrowserRouter>
        

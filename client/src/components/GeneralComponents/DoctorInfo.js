@@ -27,6 +27,7 @@ const DoctorInfo = () => (
     </div>
     <div className="content">
       <h6>Specialization</h6>
+      
       <ul>
         <li>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam

@@ -40,7 +40,6 @@ const Sidebar = (props) => {
             </li>
 			
 			
-			
             <li className="navbar-nav">
                 <Link className="nav-link text-light" to="/doctorPatients">
                     <span className="fa fa-user-o pr-3"></span>

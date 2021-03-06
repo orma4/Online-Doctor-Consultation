@@ -8,6 +8,7 @@ import 'react-infinite-calendar/styles.css';
 import like from '../../assets/images/like.png';
 import Navbar from './../GeneralComponents/AppNavbar'
 import { object } from 'prop-types';
+import { Date } from 'core-js';
 
 class DoctorBooking extends Component {
   constructor(props) {
@@ -21,7 +22,8 @@ class DoctorBooking extends Component {
 
   handleDateSelect = date => {
     console.log(moment(date).format('ll'))
-    this.setState({ selectedDate: date });
+    this.setState({ selectedDate: date,time:null });
+    
   };
 
   handleTimeChange = time => {
@@ -56,30 +58,70 @@ class DoctorBooking extends Component {
     return arr;
   }
 
-   
+  disabledHours=()=>{
+    
+    const disabledHours=[]
+    const {today}=this.state
+    console.log(disabledHours)    
+    if(this.state.today===this.state.selectedDate){
+      for(var i=today.getHours();i===0;i--){
+      disabledHours.push(i)
+     
+    }
+    
+    }
+    return disabledHours;
+    
+
+  }
+
 
   render() {
+    
+    
     const { today } = this.state;
+    console.log(this.state.today)
+    console.log(this.state.today.getTime()===this.state.selectedDate.getTime())
     const { location } = this.props;
     const { doctor } = location.state;
-    //console.log(this.generateOptions()) 
-
+    console.log(this.generateOptions()) 
     var date=moment(this.state.selectedDate).format('ll');
+    const disabledHours=()=>{
+    
+      const disabledHours=[]
+      const {today}=this.state
+      console.log(today.getHours()) 
+      if(this.state.today.getDay()===this.state.selectedDate.getDay()){
+        for(var i=today.getHours();i>=0;i--){
+        disabledHours.push(i)
+        console.log(disabledHours)
+       
+      }
+      
+      }
+      return disabledHours;
+      
+  
+    }
+  
+
+
+
     function disabledMinutes(h) {
       doctor.takenAppointments.forEach(object => {
         if(object.date===date)
        {
          var index=object.time.indexOf(":")
-         console.log(typeof(index));
-       //  var zib = (object.time).replaceAt(index,'')
+          console.log( (object.time).replaceAt(index,''))
         
       }
         
       });
-  
     
     }
+    // disabledHours();
     return (
+      
       <div className="DoctorBooking">
         <Navbar
           bg="#266a61"
@@ -98,7 +140,8 @@ class DoctorBooking extends Component {
               onChange={this.handleTimeChange}
               format="h:mm a"
               minuteStep={15}
-              disabledMinutes={disabledMinutes}
+              disabledHours={disabledHours}
+              // disabledMinutes={disabledMinutes}
               inputReadOnly
               
             />

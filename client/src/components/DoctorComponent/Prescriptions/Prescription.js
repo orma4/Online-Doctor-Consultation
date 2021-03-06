@@ -11,7 +11,7 @@ const Prescription = () => {
             .then(res => res.json())
             .then(data => setAppointments(data))
     }, [])
-    const [filterAppointments, setFilterAppointments] = useState([]);
+    const [filterAppointments, setSearchFilterAppointments] = useState([]);
     useEffect(() => {
         var filterArray = []
         appointments.filter(appointment => {
@@ -19,7 +19,7 @@ const Prescription = () => {
                 filterArray.push(appointment)
             }
         })
-        setFilterAppointments(filterArray)
+        setSearchFilterAppointments(filterArray)
     }, [appointments])
     return (
         <div className="col-md-10 p-4">

@@ -13,6 +13,7 @@ import like from '../../assets/images/like.png';
 import callAnswer from '../../assets/images/call-answer.png';
 
 import { getSingleDoctor } from '../../actions/patientActions';
+import  EditDoctorDetail  from './EditDoctorDetail'
 class DoctorDetail extends Component  {
   state={
     doctor:{},
@@ -30,9 +31,10 @@ class DoctorDetail extends Component  {
   }
   
    renderTab = ({ phone, address }) => {
+     console.log(this.props.singleDoc)
     switch (this.state.tab) {
       case 0:
-        return <DoctorInfo />;
+        return this.props.singleDoc&& <DoctorInfo info={{education:this.props.singleDoc.education||"",servicesOffered:this.props.singleDoc.servicesOffered||"",specialization:this.props.singleDoc.specialization||""}}/>;
       case 1:
         return <ClinicInfo phone={phone} address={address} />;
       case 2:
@@ -48,12 +50,14 @@ class DoctorDetail extends Component  {
 
   
 render(){
-  const singleDoctor = this.state.doctor;
-  console.log(singleDoctor.image);
-
+  // console.log(this.state.doctor);
+  const singleDoctor = this.props.singleDoc;
   return (
     <div className="DoctorDetail">
       <AppNavbar bg="#266a61" title="Details" backBtn="/doctors" />
+      {/* {console.log(singleDoctor)} */}
+      {singleDoctor&& this.props.user&&this.props.user.userType==="doctor" && (<EditDoctorDetail doctor={this.props.singleDoc}/>)}
+      
       {singleDoctor && (
         <div>
           <div className="detail-card">
@@ -104,6 +108,7 @@ render(){
             </button>
           </div>
           {this.renderTab(singleDoctor)}
+          <div>
           <Link
             to={{
               pathname: `/doctors/${singleDoctor._id}/book`,
@@ -113,6 +118,7 @@ render(){
           >
             Book Appointment
           </Link>
+          </div>  
         </div>
       )}
     </div>
@@ -126,7 +132,7 @@ DoctorDetail.propTypes = {
 
 const mapStateToProps = state => ({
   singleDoc: state.doctor.singleDoctor,
-  
+  user:state.auth.user
 });
 
 export default connect  (mapStateToProps, { getSingleDoctor })(DoctorDetail);

@@ -4,7 +4,8 @@ import {
 ADD_DOCTOR,
 GET_DOCTORS,
 GET_SINGLE_DOCTOR,
-DOCTOR_FILTER
+DOCTOR_FILTER,
+DOCTOR_SEARCH_FILTER
 } from './types';
 import { setAlert } from './alertActions';
 import { returnErrors } from './errorActions';
@@ -15,9 +16,6 @@ export const getDoctors = (filterObj) => async(dispatch , getState) => {
 
   const approvedUsers = await axios.get('/api/auth/getApprovedDoctors', tokenConfig(getState));
   const doctors = await axios.get('/api/doctors',tokenConfig(getState));
-  console.log(approvedUsers)
-  console.log(doctors)
-  console.log(filterObj)
     const approvedArr = [];
 
     let categoryApprovedArr = [];
@@ -36,6 +34,18 @@ export const getDoctors = (filterObj) => async(dispatch , getState) => {
   })
   )
 
+  const filterByCategory = (filterObj) => {
+    if(filterObj.category==='All')
+      return approvedArr
+    else{
+      console.log("no")
+    categoryApprovedArr=approvedArr.filter(doctor=>{
+    return doctor.category === filterObj.category})
+          return categoryApprovedArr
+    }
+  }
+
+  if(filterObj.id ==="searchFilter"){
       if(filterObj.name&&filterObj.category){
         categoryApprovedArr = approvedArr.filter(doctor => {
           return doctor.category !== filterObj.category
@@ -47,16 +57,8 @@ export const getDoctors = (filterObj) => async(dispatch , getState) => {
       }
       
         if(filterObj.category){
-          console.log(approvedArr)
-          if(filterObj.category==='All')
-            dispatchArr(approvedArr)
-        else{
-          console.log("no")
-      categoryApprovedArr=approvedArr.filter(doctor=>{
-        return doctor.category === filterObj.category
-               })
-               dispatchArr(categoryApprovedArr)
-        }
+        let dispatchArray = filterByCategory(filterObj)
+        dispatchArr(dispatchArray);
       }
        
 
@@ -70,11 +72,36 @@ export const getDoctors = (filterObj) => async(dispatch , getState) => {
         });    
           dispatchArr(searchArr)      
         }
-       
+      }
+
+
+    else{
+
+      if(filterObj.category){
+        approvedArr = filterByCategory(filterObj)
+      }
+
+      if(filterObj.fee){
+        console.log("sasd",approvedArr)
+        dispatchArr(approvedArr.filter(doctor =>
+          doctor.fee < filterObj.fee))
+          //dispatchArr(filteredArray)
+        
+      }
+
+      if(filterObj.exp){
+        let dispatchArray = filterByCategory(filterObj)
+        
+      }
+      ////todoooooooooooooooooooooooooooooooooooooooo
+
+      // if(filterObj.likes){
+      //   let dispatchArray = filterByCategory(filterObj)
+        
+      // }
+    }
       
   };
-
-
 
 
 
@@ -90,7 +117,12 @@ export const getSingleDoctor = (id) => async (dispatch , getState) => {
     .catch(error => dispatch(setAlert(`${error}`, 'danger')));
 };
 
-export const setFilter = (obj) => ({
-type: DOCTOR_FILTER,
+export const setSearchFilter = (obj) => ({
+type: DOCTOR_SEARCH_FILTER,
 payload: obj,
 });
+
+export const setDoctorsFilter = (obj) => ({
+  type: DOCTOR_FILTER,
+  payload: obj,
+  });

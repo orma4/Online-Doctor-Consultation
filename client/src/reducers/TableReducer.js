@@ -5,7 +5,7 @@ import InsertField from '../components/DoctorComponent/InsertField';
 const  initialState = {
     dashBoardTable: {
         columns: [
-            { accessor: 'name',   label: 'Patient Name', priorityLevel: 1, position: 1, minWidth: 150, CustomComponent: InsertField },
+            { accessor: 'firstName',   label: 'Patient Name', priorityLevel: 1, position: 1, minWidth: 150, CustomComponent: InsertField },
             { accessor: 'email',  label: 'Email', priorityLevel: 2, position: 2, minWidth: 150 ,CustomComponent: InsertField },
             { accessor: 'phone',  label: 'Phone', priorityLevel: 3, position: 3, minWidth: 150, sortable: false, CustomComponent: InsertField},
             { accessor: 'date',   label: 'Date', priorityLevel: 4, position: 4, minWidth: 150, sortType: 'date', sortable: false },
@@ -20,7 +20,7 @@ const  initialState = {
 
     appointmentsTable: {
         columns: [
-            { accessor: 'name',   label: 'First Name', priorityLevel: 1, position: 1, minWidth: 150, CustomComponent: InsertField },
+            { accessor: 'firstName',   label: 'First Name', priorityLevel: 1, position: 1, minWidth: 150, CustomComponent: InsertField },
             { accessor: 'time',   label: 'Time', priorityLevel: 2, position:2, minWidth: 150, sortable: false },
             { accessor: 'join',  label: '', priorityLevel: 3, position: 3, minWidth: 200, CustomComponent: InsertField, sortable: false }
         ],
@@ -31,7 +31,7 @@ const  initialState = {
     
     appointmentsHistoryTable: {
         columns: [
-            { accessor: 'name',   label: 'First Name', priorityLevel: 1, position: 1, minWidth: 150, CustomComponent: InsertField },
+            { accessor: 'firstName',   label: 'First Name', priorityLevel: 1, position: 1, minWidth: 150, CustomComponent: InsertField },
             { accessor: 'time',   label: 'Time', priorityLevel: 2, position: 2, minWidth: 150, sortable: false },
             { accessor: 'date',   label: 'Date', priorityLevel: 3, position: 3, minWidth: 150, sortType: 'date', sortable: false },
             { accessor: 'report',  label: '', priorityLevel: 4, position: 4, minWidth: 200, CustomComponent: InsertField, sortable: false }       
@@ -50,7 +50,7 @@ const  initialState = {
     },
     patientsTable: {
         columns: [
-            { accessor: 'name',   label: 'First Name', priorityLevel: 1, position: 1, minWidth: 150, CustomComponent: InsertField },
+            { accessor: 'firstName',   label: 'First Name', priorityLevel: 1, position: 1, minWidth: 150, CustomComponent: InsertField },
             { accessor: 'email',  label: 'Email', priorityLevel: 2, position: 2, minWidth: 150 ,CustomComponent: InsertField },
             { accessor: 'phone',   label: 'Phone', priorityLevel: 3, position: 3, minWidth: 150, sortable: false, CustomComponent: InsertField},
             { accessor: 'viewProfile',  label: '', priorityLevel: 7, position: 7, minWidth: 200, CustomComponent: InsertField, sortable: false }  

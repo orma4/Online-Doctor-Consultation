@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setFilter } from '../../actions/patientActions';
+import { setDoctorsFilter } from '../../actions/patientActions';
 
 class FilterPop extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class FilterPop extends Component {
   };
 
   handleSubmit = e => {
-    const { setFilter } = this.props;
+    const { setDoctorsFilter } = this.props;
     e.preventDefault();
     const filterObj = {};
     Object.entries(this.state).forEach(([key, value]) => {
@@ -34,11 +34,11 @@ class FilterPop extends Component {
         }
       }
     });
-    setFilter({ ...filterObj });
+    setDoctorsFilter({id: "doctorsFilter",...filterObj });
   };
 
   handleReset = e => {
-    const { setFilter } = this.props;
+    const { setDoctorsFilter } = this.props;
     e.preventDefault();
     this.setState({
       name: '',
@@ -47,7 +47,7 @@ class FilterPop extends Component {
       exp: '',
       likes: '',
     });
-    setFilter({});
+    setDoctorsFilter({});
   };
 
   render() {
@@ -180,8 +180,8 @@ FilterPop.defaultProps = {
 };
 
 FilterPop.propTypes = {
-  setFilter: PropTypes.func.isRequired,
+  setDoctorsFilter: PropTypes.func.isRequired,
   categories: PropTypes.array,
 };
 
-export default connect(null, { setFilter })(FilterPop);
+export default connect(null, { setDoctorsFilter })(FilterPop);

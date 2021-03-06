@@ -32,7 +32,19 @@ const doctorSchema = new Schema ({
       required: true
    },
 
+   education: {
+      type: String,
+      required: true
+   },
    exp: {
+      type: String,
+      required: true
+   },
+   specialization: {
+      type: String,
+      required: true
+   },
+   servicesOffered: {
       type: String,
       required: true
    },
@@ -48,15 +60,19 @@ const doctorSchema = new Schema ({
         type: String,
         required: true
      },
-
+     feedbacks: {
+      type: Array,
+      required: true
+   },
+     takenAppointments: {
+      type: Array,
+      required: true
+   },
    date: {
       type: Date,
       default: Date.now
-  },
-  takenAppointments: {
-   type: Array,
-   required: true
-}
+   
+  }
 
 });
 

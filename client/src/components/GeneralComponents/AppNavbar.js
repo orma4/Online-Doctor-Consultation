@@ -46,7 +46,6 @@ class AppNavbar extends Component {
                 <NavItem>
                   <Logout/>
                 </NavItem>
-                
                 <Link
              to={{
                 pathname: `/userProfile`,
@@ -56,6 +55,7 @@ class AppNavbar extends Component {
             >
               VIEW PROFILE
               </Link>
+               
 
 
               <Link
@@ -68,6 +68,7 @@ class AppNavbar extends Component {
               VIEW BOOKINGS
               </Link>
             </Fragment>
+    
         );
 
 
@@ -87,15 +88,22 @@ class AppNavbar extends Component {
                   <Logout/>
                 </NavItem>
                 
-                <Link
-             to={{
-                pathname: `/bookings`
-                //state: { doctor: this.props.singleDoctor },
+
+               {
+                   user&& <Link
+
+                
+              to={{
+                pathname: `/doctors/${user.id}`,
+                state: { doctor: {_id:user.id,...user} },
               }}
             //   className="d-flex justify-content-center"
             >
               VIEW PROFILE
             </Link>
+               }
+
+               
             </Fragment>
         );
 

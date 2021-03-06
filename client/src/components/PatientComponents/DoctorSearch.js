@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 import logo from '../../assets/images/logo.png';
 import Navbar from './../GeneralComponents/AppNavbar'
-import { setFilter } from '../../actions/patientActions';
+import { setSearchFilter } from '../../actions/patientActions';
 
-const DoctorSearch = ({ categories, setFilter, history }) => {  
+const DoctorSearch = ({ categories, setSearchFilter, history }) => {  
   const [search, setSearch] = useState('');
 
   const handleFilter = (id = null) => {
 
-    const filterObj = {};
+    const filterObj = {id: "searchFilter"};
     if (search !== '') 
       filterObj.name = search;
     
@@ -19,7 +19,7 @@ const DoctorSearch = ({ categories, setFilter, history }) => {
       filterObj.category = id;
     
 
-    setFilter(filterObj);
+    setSearchFilter(filterObj);
     console.log(filterObj);
     history.push({pathname:'/doctors',state:{filterObj}});          
     
@@ -100,9 +100,9 @@ DoctorSearch.defaultProps = {
 };
 
 DoctorSearch.propTypes = {
-  setFilter: PropTypes.func.isRequired,
+  setSearchFilter: PropTypes.func.isRequired,
   categories: PropTypes.array,
 };
 
 
-export default connect(null, { setFilter })(DoctorSearch);
+export default connect(null, { setSearchFilter: setSearchFilter })(DoctorSearch);

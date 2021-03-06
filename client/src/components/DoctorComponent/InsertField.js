@@ -10,14 +10,15 @@ const InsertField = ({ row, accessor, CustomFunction }) => {
   const [showModal,setModal]=useState(false);
  
 	const closeChat = () => setModal(false)
+  console.log(accessor)
 
 
 switch(accessor){
-  case 'name':
+  case 'firstName':
     if(row['patient']){
-      return row['patient'][accessor]
+      return row['patient']['name']
     }
-    return row[accessor]
+    return row['name']
 
   case 'email':
     if(row['patient']){

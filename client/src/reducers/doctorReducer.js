@@ -1,40 +1,12 @@
-// import {
-//     ADD_DOCTOR,
-//     GET_DOCTORS,
-//     GET_SINGLE_DOCTOR,
-//     DOCTOR_FILTER,
-//   } from '../actions/types';
-  
-//   const initialState = {
-//     singleDoctor: null,
-//     doctors: [],
-//     filter: {},
-//   };
-  
-//   const doctor = (state = initialState, action) => {
-//     const { type, payload } = action;
-//     switch (type) {
-//       case GET_DOCTORS:
-//         return { ...state, doctors: payload };
-//       case GET_SINGLE_DOCTOR:
-//         return { ...state, singleDoctor: payload };
-//       case DOCTOR_FILTER:
-//         return { ...state, filter: { ...payload } };
-//       case ADD_DOCTOR:
-//         return { ...state, doctors: [action.payload, ...state.doctors] } ;
-//       default:
-//         return state;
-//     }
-//   };
-  
-//   export default doctor;
-  
 import {
   ADD_DOCTOR,
   GET_DOCTORS,
   GET_SINGLE_DOCTOR,
   DOCTOR_FILTER,
+  DOCTOR_SEARCH_FILTER,
   GET_PATIENTS,
+  UPDATE_DOCTOR_DETAILS,
+  ADD_FEEDBACK
 } from '../actions/types';
 
 const initialState = {
@@ -42,21 +14,26 @@ const initialState = {
   doctors: [],
   patients:[],
   filter: {},
+  filterDoctors: {}
 };
 
 const doctor = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+   case ADD_FEEDBACK:
     case GET_DOCTORS:
       return { ...state, doctors: payload };
     case GET_SINGLE_DOCTOR:
       return { ...state, singleDoctor: payload };
-    case DOCTOR_FILTER:
+    case DOCTOR_SEARCH_FILTER:
       return { ...state, filter: { ...payload } };
+    case DOCTOR_FILTER:
+      return { ...state, filterDoctors: { ...payload } };
     case GET_PATIENTS:
       return {...state,patients:payload};
+    case UPDATE_DOCTOR_DETAILS:
     case ADD_DOCTOR:
-      return { ...state, doctors: [action.payload, ...state.doctors] } ;
+      return { ...state, doctors: [action.payload, ...state.doctors] , singleDoctor: payload} ;
     default:
       return state;
   }

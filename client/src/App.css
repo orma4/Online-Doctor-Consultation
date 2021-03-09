@@ -2,8 +2,25 @@
     margin-right: 0.5rem;
 }
 
+.link {
+    color: rgb(9, 226, 38)
+        
+  }
+.link:hover {
+    color: rgb(245, 7, 245);
+  }
+
+
+.link-bookings {
+    color: rgb(248, 7, 7)
+        
+  }
+.link-bookings:hover {
+    color: rgb(245, 7, 245);
+  }
+
 .fade-enter{
-opacity: 0.01;
+    opacity: 0.01;
 }
 
 .fade-enter-active{

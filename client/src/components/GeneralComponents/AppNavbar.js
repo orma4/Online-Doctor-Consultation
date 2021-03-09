@@ -46,7 +46,7 @@ class AppNavbar extends Component {
                 <NavItem>
                   <Logout/>
                 </NavItem>
-                <Link
+                <Link className="link"
              to={{
                 pathname: `/userProfile`,
                 state: { user: this.props.auth.user },
@@ -58,7 +58,7 @@ class AppNavbar extends Component {
                
 
 
-              <Link
+              <Link className="link-bookings"
              to={{
                 pathname: `/bookings`,
                 state: { user: this.props.auth.user },
@@ -90,7 +90,7 @@ class AppNavbar extends Component {
                 
 
                {
-                   user&& <Link
+                   user&& <Link className="link"
 
                 
               to={{

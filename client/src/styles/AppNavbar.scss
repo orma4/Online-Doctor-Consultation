@@ -1,4 +1,4 @@
-.Navbar {
+.AppNavbar {
   height: 10rem;
   padding: 3rem 1rem;
 
@@ -8,6 +8,12 @@
     margin: none;
   }
 
+  .link {
+    color: #FFF;
+  }
+  .link:hover {
+     color: rgb(255, 0, 64)
+  }
   .title,
   a,
   button {

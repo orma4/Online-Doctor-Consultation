@@ -21,11 +21,17 @@ export const getDoctors = (filterObj) => async(dispatch , getState) => {
     let categoryApprovedArr = [];
     let searchArr=[]
     const dispatchArr = (arr) => {
+      const sortedArr=arr.sort(function(a, b){
+        if(a.name.toLowerCase() < b.name.toLowerCase()) { return -1; }
+        if(a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
+        return 0;
+    })
       dispatch({
         type: GET_DOCTORS,
-        payload: arr
+        payload: sortedArr
         });
       }
+
     doctors.data.map(doctor => 
     approvedUsers.data.map(user => {
     if(user._id === doctor._id)

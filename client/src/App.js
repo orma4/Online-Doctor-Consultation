@@ -56,7 +56,7 @@ class App extends Component {
           <Route               exact path="/" component={HomePage} />
           <PatientPrivateRoute exact path="/hi" component={DoctorSearch} />
           <PatientPrivateRoute exact path="/doctors" component={DoctorsList} />
-          <PatientPrivateRoute exact path="/doctors/:id" component={DoctorDetail} />
+          <CombinedRoute       exact path="/doctors/:id" component={DoctorDetail} />
           <PatientPrivateRoute exact path="/doctors/:id/book" component={DoctorBooking} />
           <PatientPrivateRoute exact path="/confirm-booking" component={BookingForm} />
           <PatientPrivateRoute exact path="/confirmed" component={BookingConfirm} />
